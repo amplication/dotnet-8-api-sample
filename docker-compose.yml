@@ -19,7 +19,7 @@ services:
       - postgres:/var/lib/postgresql/data
   migrate:
     build:
-      context: .
+      context: ./src
     entrypoint: sh
     command: -c "./DbMigrationsBundle --connection $$MIGRATION_CONNECTION"
     environment:
@@ -29,11 +29,12 @@ services:
         condition: "service_healthy"
   server:
     build:
-      context: .
+      context: ./src
     ports:
       - ${PORT}:${PORT}
     environment:
       ASPNETCORE_HTTP_PORTS: ${PORT}
+      ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__DbContext: Host=db:5432;Username=admin;Password=admin;Database=postgres
     restart: on-failure
     depends_on:
