@@ -1,21 +1,38 @@
 
-## Setup
+# Getting started
 
-- Create the initial db migration: `dotnet ef migrations add initialMigration`
-- Run initial migration to db: `dotnet ef database update`
+## Step 1: Configuration
+
+## Step 2.1: Scripts - pre-requisites
 
 
-## Run locally
+```sh
+# installation of the dependencies
+$ dotnet restore .
 
-- Create the first time migration `dotnet ef migrations add initialMigration`
-- For any new data model change, create the new migrations `dotnet ef migrations add <new migration name>`
+# create and apply initial migration
+$ dotnet ef migrations add initialMigration
+```
 
-### Run service locally
+## Step 2.1: Scripts - database schema migrations
 
-- Run the service's dependencies in Docker `docker-compose -f src/docker-compose.yml up`
+```sh
+# For any database model change, create the new migrations
+$ dotnet ef migrations add <new migration name>
+```
+
+> Migration will be automatically applied on docker compose up
+
+## Step 2.2: Scripts - local development
+
+- Run the service's dependencies in Docker `docker-compose up`
 - Run the service  `dotnet run --project ./src`
 
+## Step 2.2: Scripts - container based development
 
-### Run service in docker
+- Run the service and its dependencies in Docker `docker-compose --profile complete up`
 
-- Run the service and its dependencies in Docker `docker-compose -f src/docker-compose.yml --profile complete up`
+## Apply database migration in non-local environment 
+
+Database modification in non-local enviroment would be applied throught different strategies depending on the requirements. 
+Follow Microsoft directions for your strategy: https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying
