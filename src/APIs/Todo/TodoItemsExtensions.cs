@@ -26,6 +26,11 @@ public static class TodoItemsExtensions
             todoItem.IsComplete = updateDto.IsComplete.Value;
         }
 
+        if (updateDto.Status != null)
+        {
+            todoItem.Status = updateDto.Status.Value;
+        }
+
         if (updateDto.WorkspaceId != null)
         {
             todoItem.WorkspaceId = updateDto.WorkspaceId.Value;

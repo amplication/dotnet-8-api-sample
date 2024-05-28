@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyService.Core.Enum;
 
 namespace MyService.Infrastructure.Models;
 
@@ -12,7 +13,10 @@ public class TodoItem
 
     [StringLength(250)]
     public string? Name { get; set; }
+
     public bool IsComplete { get; set; }
+
+    public TodoItemStatus Status { get; set; } = TodoItemStatus.Draft;
 
     // Required one-to-many relationship
     public long WorkspaceId { get; set; } // Foreign Key of one-to-many relationship
