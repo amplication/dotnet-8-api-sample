@@ -18,6 +18,13 @@ public abstract class AuthorsServiceBase : IAuthorsService
         _context = context;
     }
 
+    public async Task<MetadataDto> CountAuthors(AuthorFindMany findManyArgs)
+    {
+        var count = await _context.Authors.ApplyWhere(findManyArgs.Where).CountAsync();
+
+        return new MetadataDto { Count = count };
+    }
+
     public async Task<IEnumerable<AuthorDto>> Authors(AuthorFindMany findManyArgs)
     {
         var authors = await _context

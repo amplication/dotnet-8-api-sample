@@ -16,6 +16,13 @@ public abstract class AuthorsControllerBase : ControllerBase
         _service = service;
     }
 
+    [HttpPost("_meta")]
+    [Authorize(Roles = "admin,user")]
+    public async Task<ActionResult<MetadataDto>> MetaAuthors([FromQuery] AuthorFindMany filter)
+    {
+        return Ok(await _service.CountAuthors(filter));
+    }
+
     [HttpGet]
     [Authorize(Roles = "admin,user")]
     public async Task<ActionResult<IEnumerable<AuthorDto>>> Authors(

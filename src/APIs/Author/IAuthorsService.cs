@@ -4,6 +4,8 @@ namespace MyService.APIs;
 
 public interface IAuthorsService
 {
+    public Task<MetadataDto> CountAuthors(AuthorFindMany findManyArgs);
+
     public Task<IEnumerable<AuthorDto>> Authors(AuthorFindMany findManyArgs);
 
     public Task<AuthorDto> Author(AuthorIdDto idDto);
