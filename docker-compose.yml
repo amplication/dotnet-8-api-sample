@@ -23,7 +23,7 @@ services:
     entrypoint: sh
     command: -c "./DbMigrationsBundle --connection $$MIGRATION_CONNECTION"
     environment:
-      MIGRATION_CONNECTION: Host=db:5432;Username=admin;Password=admin;Database=postgres
+      MIGRATION_CONNECTION: Host=db:5432;Username=admin;Password=admin;Database=dotnet8-sample
     depends_on:
       db: 
         condition: "service_healthy"
@@ -35,7 +35,7 @@ services:
     environment:
       ASPNETCORE_HTTP_PORTS: ${PORT}
       ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__DbContext: Host=db:5432;Username=admin;Password=admin;Database=postgres
+      ConnectionStrings__DbContext: Host=db:5432;Username=admin;Password=admin;Database=dotnet8-sample
     restart: on-failure
     depends_on:
       migrate:
